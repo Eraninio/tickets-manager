@@ -16,12 +16,9 @@ app.get('/api/tickets/', async(req, res)=> {
     }      
 });
 
-
-
-
 app.post('/api/tickets/:ticketId/done', async (req, res) => {
     const content = await fs.readFile('./data.json');
-    let tickets = JSON.parse(content);
+    const tickets = JSON.parse(content);
     try {
       const data = tickets.map((item) => {
         if (item.id === req.params.ticketId) {
@@ -35,10 +32,6 @@ app.post('/api/tickets/:ticketId/done', async (req, res) => {
     } catch (e) { res.send({ updated: false }); }
   });
   
-
-
-
-
   app.post('/api/tickets/:ticketId/undone', async (req, res) => {
     const content = await fs.readFile('./data.json');
     let tickets = JSON.parse(content);
