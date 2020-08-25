@@ -7,6 +7,7 @@ import SearchText from './components/SearchText';
 const App = () => {
 const [tickets, setTickets] = useState([]);
 const [searchText, setSearchText] = useState('');
+const [countHiddenTicket, setCountHiddenTicket] = useState(0);
 
 const getTicket = async () => {
   try {
@@ -22,6 +23,10 @@ useEffect(() => {
   getTicket()
 }, [])
 
+function restore(){
+  window.location.reload();
+}
+
 useEffect(() => {
   const data = async () => {
     const searchList = await axios.get(`/api/tickets?searchText=${searchText}`);
@@ -31,12 +36,20 @@ useEffect(() => {
 }, [searchText]);
 
 
-
   return (
   <div>
+      <div className='counter'> {countHiddenTicket>0 &&
+        <>
+          <p id='hideTicketsCounter'>{countHiddenTicket}</p>
+          <button id='restoreHideTickets' onClick={restore}>Restore</button>
+        </>
+      }
+      </div>
     <SearchText searchText={searchText} setSearchText={setSearchText}/>
     <Ticket 
     tickets={tickets}
+    countHiddenTicket={countHiddenTicket}
+    setCountHiddenTicket={setCountHiddenTicket}
     />
   </div>
   )
