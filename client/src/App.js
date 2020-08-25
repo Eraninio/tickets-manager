@@ -16,7 +16,7 @@ const getTicket = async () => {
     const res = await axios.get(url + '/api/tickets');
     setTickets(res.data);
     console.log(res.data);
-  }catch (e) {
+  } catch (e) {
     console.log(e);
   }
 }
@@ -28,8 +28,7 @@ useEffect(() => {
 
   return (
   <div>
-    <Ticket className='ticket' tickets={tickets}/>
-    
+    <Ticket tickets={tickets}/>
   </div>
   )
 }
