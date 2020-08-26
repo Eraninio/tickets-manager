@@ -7,7 +7,9 @@ import SearchText from './components/SearchText';
 const App = () => {
 const [tickets, setTickets] = useState([]);
 const [searchText, setSearchText] = useState('');
-const [countHiddenTicket, setCountHiddenTicket] = useState(0);
+const [counter, setCounter] = useState(0);
+const [restoreApp, setRestoreApp] = useState(0);
+
 
 const getTicket = async () => {
   try {
@@ -19,13 +21,22 @@ const getTicket = async () => {
   }
 }
 
+
+const getCounter = () => {
+  setCounter(counter + 1)
+}
+
+
+const restore = () => {
+  setRestoreApp(restoreApp + 1);
+  setCounter(0);
+}
+
+
 useEffect(() => {
   getTicket()
 }, [])
 
-function restore(){
-  window.location.reload();
-}
 
 useEffect(() => {
   const data = async () => {
@@ -36,22 +47,15 @@ useEffect(() => {
 }, [searchText]);
 
 
-  return (
-  <div>
-      <div className='counter'> {countHiddenTicket>0 &&
-        <>
-          <p id='hideTicketsCounter'>{countHiddenTicket}</p>
-          <button id='restoreHideTickets' onClick={restore}>Restore</button>
-        </>
-      }
-      </div>
-    <SearchText searchText={searchText} setSearchText={setSearchText}/>
-    <Ticket 
-    tickets={tickets}
-    countHiddenTicket={countHiddenTicket}
-    setCountHiddenTicket={setCountHiddenTicket}
-    />
-  </div>
+return (
+  <>
+    <span id="hideTicketsCounter">{counter}</span>
+    <button id="restoreHideTickets" onClick={restore}>restore</button>
+    <div>
+      <SearchText searchText={searchText} setSearchText={setSearchText}/>
+      {tickets.map((ticket, index) => <Ticket ticket={ticket} key={index} getCounter={getCounter} restoreApp={restoreApp}/>)}
+    </div>
+  </>    
   )
 }
 

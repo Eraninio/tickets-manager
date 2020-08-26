@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Ticket.css';
 
-const Ticket = (props) => {
+const Ticket = ({ticket, getCounter , restoreApp}) => {
+    const [classTicket, setClassTicket] = useState('ticket');
     
-    function hideTicket (e) {
-        e.currentTarget.parentElement.className='hidden-ticket';
-        props.setCountHiddenTicket(props.countHiddenTicket+1);
+
+    const hideClick = () => {
+        setClassTicket('hiddenTicket');
+        getCounter()
     }
 
-    return (
-        <>
-        {props.tickets.map((ticket) => {
+    useEffect(() => {
+        setClassTicket('ticket')
+    }, [restoreApp]);
+
+
       return (
-        <div key = {ticket.id} className='ticket'>
-            <button className='hideTicketButton' onClick={hideTicket}>Hide</button>
-            <h3>{ticket.title}</h3>
-            <div>{ticket.content}</div>  
-            <div >{ticket.labels !== undefined && ticket.labels.map((label)=> <p className="label">{label}</p>)}</div>
-            <div>{ticket.userEmail}</div>
-        </div>
+          <div>
+            <div className={classTicket}>
+                <h4>{ticket.title} </h4>
+                <p>{ticket.content}</p>
+                <p>{ticket.labels !== undefined && ticket.labels.map((label) => <span className="label">{label}</span>)} </p>
+                <button className="hideTicketButton" onClick={hideClick} >hide</button>
+            </div>
+          </div>
       )
-    })}
-        </>
-
-    )
-}
-
+    }
 
 export default Ticket;
