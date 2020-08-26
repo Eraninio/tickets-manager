@@ -46,6 +46,7 @@ return (
   <>
     <div>Available TIckets:</div>
     <div id="hideTicketsCounter">{counter}</div>
+    <button>Sort By Date</button>
     <button id="restoreHideTickets" onClick={restore}>restore</button>
     <div>
       <SearchText searchText={searchText} setSearchText={setSearchText}/>

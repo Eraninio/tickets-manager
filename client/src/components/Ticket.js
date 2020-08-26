@@ -41,16 +41,29 @@ const Ticket = ({ticket, getCounter , restoreApp, getTicket }) => {
          return date;
      }
 
+     const stlye = ticket.done ?
+     {
+         backgroundColor: 'red',
+         color: 'white',
+         font: 'inherint'
+     } :
+     {
+        backgroundColor: 'green',
+        color: 'white',
+        font: 'inherint'
+     }
 
       return (
           <div>
             <div className={classTicket}>
-                <button className="hideTicketButton" onClick={hideClick} >hide</button>
-                <h4>{ticket.title} </h4>
+                <button style={stlye} onClick={ticket.done ? () => getUnDone(ticket) : () => getDone(ticket)}>{ticket.done ? 'unDone' : 'Done'}</button>
+                <h3>{ticket.title} </h3>
                 <p>{ticket.content}</p>
                 <div>{ticket.labels !== undefined && ticket.labels.map((label) => <div className="label">{label}</div>)} </div>
-                <button onClick={ticket.done ? () => getUnDone(ticket) : () => getDone(ticket)}>{ticket.done ? 'unDone' : 'Done'}</button>
-                <div>Creation Date: {getDate(ticket.creationTime)} </div> 
+                <br/>
+                <div> {getDate(ticket.creationTime)} </div> 
+                <br/>
+                <button className="hideTicketButton" onClick={hideClick} >hide</button>
             </div>
           </div>
       )
