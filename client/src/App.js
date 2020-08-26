@@ -10,7 +10,6 @@ const [searchText, setSearchText] = useState('');
 const [counter, setCounter] = useState(0);
 const [restoreApp, setRestoreApp] = useState(0);
 
-
 const getTicket = async () => {
   try {
     const res = await axios.get('/api/tickets');
@@ -26,17 +25,14 @@ const getCounter = () => {
   setCounter(counter + 1)
 }
 
-
 const restore = () => {
   setRestoreApp(restoreApp + 1);
   setCounter(0);
 }
 
-
 useEffect(() => {
   getTicket()
 }, [])
-
 
 useEffect(() => {
   const data = async () => {
@@ -46,14 +42,14 @@ useEffect(() => {
   data();
 }, [searchText]);
 
-
 return (
   <>
-    <span id="hideTicketsCounter">{counter}</span>
+    <div>Available TIckets:</div>
+    <div id="hideTicketsCounter">{counter}</div>
     <button id="restoreHideTickets" onClick={restore}>restore</button>
     <div>
       <SearchText searchText={searchText} setSearchText={setSearchText}/>
-      {tickets.map((ticket, index) => <Ticket ticket={ticket} key={index} getCounter={getCounter} restoreApp={restoreApp}/>)}
+      {tickets.map((ticket, index) => <Ticket ticket={ticket} key={index} getCounter={getCounter} restoreApp={restoreApp} getTicket={getTicket}/>)}
     </div>
   </>    
   )

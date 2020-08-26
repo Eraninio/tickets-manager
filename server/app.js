@@ -29,7 +29,8 @@ app.post('/api/tickets/:ticketId/done', async(req,res)=>{
     tickets = JSON.stringify(newTicket);
     await fs.writeFile('./data.json', tickets);
     res.send( { updated: true });
-    }
+    console.log("ticket done") 
+  }  
     catch (error) { res.send({ updated: false }); }
     });
   
@@ -46,6 +47,7 @@ app.post('/api/tickets/:ticketId/done', async(req,res)=>{
       tickets = JSON.stringify(data);
       await fs.writeFile('./data.json', tickets);
       res.send({ updated: true });
+      console.log("ticket undone")
     } catch (e) { res.send({ updated: true }); }
   });
   
