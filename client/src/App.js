@@ -20,6 +20,11 @@ const getTicket = async () => {
     console.log(e);
   }
 }
+const sortTicketsByDate = () => {
+  const sortedTickets = tickets.slice().sort((a, b) => b.creationTime - a.creationTime)
+  setTickets(sortedTickets);
+
+}
 
 
 const getCounter = () => {
@@ -50,6 +55,7 @@ return (
       <div>Hidden TIckets:</div>
       <div id="hideTicketsCounter">{counter}</div>
       <button id="restoreHideTickets" onClick={restore}>restore</button>
+      <button className='sort' onClick={sortTicketsByDate}>Sort By Date</button>
     </div>
     <div>
       <SearchText searchText={searchText} setSearchText={setSearchText}/>
