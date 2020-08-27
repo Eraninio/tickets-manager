@@ -1,0 +1,21 @@
+#searchInput {
+width: 15%;
+box-sizing: border-box;
+border: 2px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+background-color: white;
+background-position: 10px 10px; 
+background-repeat: no-repeat;
+padding: 12px 20px 12px 40px;
+-webkit-transition: width 0.4s ease-in-out;
+transition: width 0.4s ease-in-out;
+margin-left: auto;
+margin-right: auto;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#searchInput[type=text]:focus {
+width: 30%;
+}

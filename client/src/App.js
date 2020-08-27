@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Ticket from './components/Ticket';
 import SearchText from './components/SearchText';
+import Header from './components/Header';
 
 const App = () => {
 const [tickets, setTickets] = useState([]);
@@ -44,10 +45,12 @@ useEffect(() => {
 
 return (
   <>
-    <div>Available TIckets:</div>
-    <div id="hideTicketsCounter">{counter}</div>
-    <button>Sort By Date</button>
-    <button id="restoreHideTickets" onClick={restore}>restore</button>
+    <Header/>
+    <div className='header2'>
+      <div>Hidden TIckets:</div>
+      <div id="hideTicketsCounter">{counter}</div>
+      <button id="restoreHideTickets" onClick={restore}>restore</button>
+    </div>
     <div>
       <SearchText searchText={searchText} setSearchText={setSearchText}/>
       {tickets.map((ticket, index) => <Ticket ticket={ticket} key={index} getCounter={getCounter} restoreApp={restoreApp} getTicket={getTicket}/>)}

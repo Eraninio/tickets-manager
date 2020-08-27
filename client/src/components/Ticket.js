@@ -54,18 +54,17 @@ const Ticket = ({ticket, getCounter , restoreApp, getTicket }) => {
      }
 
       return (
-          <div>
             <div className={classTicket}>
-                <button style={stlye} onClick={ticket.done ? () => getUnDone(ticket) : () => getDone(ticket)}>{ticket.done ? 'unDone' : 'Done'}</button>
-                <h3>{ticket.title} </h3>
-                <p>{ticket.content}</p>
-                <div>{ticket.labels !== undefined && ticket.labels.map((label) => <div className="label">{label}</div>)} </div>
-                <br/>
-                <div> {getDate(ticket.creationTime)} </div> 
-                <br/>
-                <button className="hideTicketButton" onClick={hideClick} >hide</button>
+                <div className="ticketi">
+                    <div className="date"> {getDate(ticket.creationTime)} </div> 
+                    <div className="email">{ticket.userEmail}</div>
+                    <button className="hideTicketButton" onClick={hideClick} >Hide</button>
+                    <h3 className='title'>{ticket.title} </h3>
+                    <div className="labels">{ticket.labels !== undefined && ticket.labels.map((label) => <div className="label">{label}</div>)} </div>
+                    <button className="done" style={stlye} onClick={ticket.done ? () => getUnDone(ticket) : () => getDone(ticket)}>{ticket.done ? 'unDone' : 'Done'}</button>
+                    <p className="content">{ticket.content}</p>
+                </div>
             </div>
-          </div>
       )
     }
 
