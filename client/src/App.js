@@ -49,13 +49,13 @@ const App = () => {
     <>
       <Header />
       <div className="header2">
+        <SearchText searchText={searchText} setSearchText={setSearchText} />
         <div>Hidden TIckets:</div>
         <div id="hideTicketsCounter">{counter}</div>
         <button id="restoreHideTickets" onClick={restore}>restore</button>
         <button className="sort" onClick={sortTicketsByDate}>Sort By Date</button>
       </div>
       <div>
-        <SearchText searchText={searchText} setSearchText={setSearchText} />
         {tickets.map((ticket, index) => <Ticket ticket={ticket} key={index} getCounter={getCounter} restoreApp={restoreApp} getTicket={getTicket} />)}
       </div>
     </>
